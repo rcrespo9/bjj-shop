@@ -23,11 +23,13 @@ class CreateOrderDetailsTable extends Migration
             
             $table->foreign('customer_id')
             ->references('id')
-            ->on('customers');
+            ->on('customers')
+            ->onDelete('cascade');
 
             $table->foreign('order_id')
             ->references('id')
-            ->on('orders');
+            ->on('orders')
+            ->onDelete('cascade');
         });
     }
 
