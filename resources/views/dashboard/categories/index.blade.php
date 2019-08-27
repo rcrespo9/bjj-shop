@@ -9,6 +9,15 @@
         @slot('action')
             <a class="btn btn-primary" href="{{ route('categories.create') }}">Add New</a>
         @endslot
+
+        @if (session('category_status'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              {{ session('category_status') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        @endif
         
         <div class="row">
             @foreach ($categories as $category)

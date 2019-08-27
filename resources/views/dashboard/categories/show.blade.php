@@ -21,6 +21,12 @@
                 <p class="card-text">{{ $category->description }}</p>
                 <a class="btn btn-secondary" href="{{ route('categories.edit', [$category->id]) }}">Edit Category</a>
                 <a class="btn btn-primary" href="{{ route('categories.index') }}">Back to Categories</a>
+
+                <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <input type="submit" class="btn btn-danger mt-2" value="Delete Category">
+                </form>
             </div>
         </div>
     @endcomponent
