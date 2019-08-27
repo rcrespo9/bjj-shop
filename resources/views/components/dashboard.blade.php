@@ -31,6 +31,11 @@
 
   <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <h1 class="h2 pt-4 mb-3">{{ $title }}</h1>
+    @if (isset($action)) 
+      <div class="mb-4">
+        {{ $action }}
+      </div> 
+    @endif
     {{ $slot }}
   </div>
 </div>

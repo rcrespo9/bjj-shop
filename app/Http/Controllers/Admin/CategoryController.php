@@ -67,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit', compact('category'));
     }
 
     /**
@@ -79,7 +79,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update(request(['name', 'description']));
+
+        return redirect()->route('categories.show', [$category])->with('category_status', 'Category successfully updated.');
     }
 
     /**

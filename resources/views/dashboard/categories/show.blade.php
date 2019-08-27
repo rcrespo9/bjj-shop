@@ -3,8 +3,17 @@
 @section('content')
     @component('components.dashboard')
         @slot('title')
-            Category Detail Page
+            Category Details
         @endslot
+
+        @if (session('category_status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('category_status') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        @endif
         
         <div class="card">
             <div class="card-body">

@@ -6,14 +6,18 @@
             Categories
         @endslot
         
+        @slot('action')
+            <a class="btn btn-primary" href="{{ route('categories.create') }}">Add New</a>
+        @endslot
+        
         <div class="row">
             @foreach ($categories as $category)
                 <div class="col-sm-3 pb-3">
                     <div class="card">
                         <div class="card-body">
                             <h3 class="h5">{{ $category->name }}</h3>
-                            <p class="card-text">{{ $category->description }}</p>
-                            <a class="btn btn-primary" href="{{ url('dashboard/categories/'.$category->id) }}">See Category</a>
+                            <p class="card-text">{{ str_limit($category->description, $limit = 40, $end = '...') }}</p>
+                            <a class="card-link" href="{{ url('dashboard/categories/'.$category->id) }}">See Category</a>
                         </div>
                     </div>
                 </div>
