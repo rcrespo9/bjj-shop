@@ -20,4 +20,5 @@ Auth::routes(['register' => false]);
 Route::group(['namespace' => 'Admin', 'prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('categories', 'CategoryController');
+    Route::resource('products', 'ProductController');
 });
