@@ -2,8 +2,11 @@
 
 @section('content')
     @component('components.dashboard')
+        @slot('title')
+            Dashboard
+        @endslot
         <div class="jumbotron">
-            <h1 class="display-4">Welcome to the Kimura BJJ Shop Dashboard!</h1>
+            <h2 class="display-4">Welcome to the Kimura BJJ Shop Dashboard!</h1>
             <p class="lead">Given your permissions, you are able to:</p>
             <ul>
                 @foreach ($formatted_perms as $perm)
