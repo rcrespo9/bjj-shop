@@ -72,7 +72,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('dashboard.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -84,7 +86,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update(request(['name', 'price', 'quantity_in_stock', 'image_url']));
+        $new_category = Category::find($request->category_id);
+        $product->category()->associate($new_category);
+
+        $product->save();
+
+        return redirect()->route('products.show', [$product])->with('product_status', 'Product successfully updated.');
     }
 
     /**
@@ -95,6 +103,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')->with('product_status', $product->name . ' has been deleted.');
     }
 }
