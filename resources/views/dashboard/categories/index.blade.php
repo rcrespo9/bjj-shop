@@ -25,8 +25,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="h5">{{ $category->name }}</h3>
-                            <p class="card-text">{{ str_limit($category->description, $limit = 40, $end = '...') }}</p>
-                            <a class="card-link" href="{{ url('dashboard/categories/'.$category->id) }}">See Category</a>
+                            @if (isset($category->description))
+                                <p class="card-text">{{ str_limit($category->description, $limit = 40, $end = '...') }}</p>
+                            @else
+                              <p class="card-text">No description.</p>
+                            @endif
+                            <a class="card-link" href="{{ url('dashboard/categories/'.$category->id) }}">View Category</a>
                         </div>
                     </div>
                 </div>

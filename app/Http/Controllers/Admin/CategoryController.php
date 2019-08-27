@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -45,7 +45,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::firstOrCreate(request(['name', 'description']));
+        $category->save();
+
+        return redirect()->route('categories.show', [$category]);
     }
 
     /**
