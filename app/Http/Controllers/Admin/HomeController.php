@@ -30,6 +30,6 @@ class HomeController extends Controller
             }, $permission_names);
         }
         
-        return view('home', compact('formatted_perms'));
+        return view('dashboard.home', compact('formatted_perms'));
     }
 }
