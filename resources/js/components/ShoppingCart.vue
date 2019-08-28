@@ -13,33 +13,27 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'ShoppingCart',
-  data() {
-    return {
-      items: []
-    }
-  },
   computed: {
-    itemsCount() {
-      const totalProductsReducer = (acc, curr) => acc.quantity + curr.quantity;
-      let totalProducts = this.items.reduce(totalProductsReducer);
-      return totalProducts;
-    },
-    totalPrice() {
-      const totalPriceReducer = (acc, curr) => (parseFloat(acc.price) * acc.quantity) + (parseFloat(curr.price) * curr.quantity);
-      let totalPrice = this.items.reduce(totalPriceReducer);
-      return totalPrice;
-    }
+    ...mapGetters([
+      'itemsCount',
+      'totalPrice'
+    ]),
+    ...mapState([
+      'cart'
+    ])
   },
   created() {
     this.getCartItems();
   },
   methods: {
-    getCartItems() {
-      const cartItems = JSON.parse( localStorage.getItem('fantastic_toys_cart') );
-      this.items = cartItems;
-    }
+    ...mapActions([
+      'getCartItems'
+    ])
   }
 }
 </script>
+

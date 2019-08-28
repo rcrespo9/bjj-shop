@@ -18,6 +18,7 @@
 
 <script>
   import ShopProduct from './ShopProduct.vue'
+  import { mapActions, mapState } from 'vuex'
 
   export default {
     name: 'Shop',
@@ -33,7 +34,13 @@
     created() {
       this.getProducts();
     },
+    computed: mapState([
+      'cart'
+    ]),
     methods: {
+      ...mapActions([
+        'addCartItem'
+      ]),
       getProducts() {
         window.axios.get('/api/products', {
           params: this.filters
@@ -49,19 +56,8 @@
           ...selectedProduct,
           quantity: formattedQuantity
         }
-        const cart = JSON.parse( localStorage.getItem('fantastic_toys_cart') );
-        const productInCart = _.find(cart, { id: newProduct.id });
 
-        if (productInCart) {
-          productInCart.quantity += newProduct.quantity;
-        } else {
-          cart.push(newProduct);
-        }
-
-        localStorage.setItem('fantastic_toys_cart', JSON.stringify(cart));
-      },
-      deleteFromCart() {
-
+        this.addCartItem(newProduct);
       }
     }
   }

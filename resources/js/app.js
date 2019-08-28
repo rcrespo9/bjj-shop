@@ -23,6 +23,8 @@ Vue.component('shop', require('./components/Shop.vue').default);
 Vue.component('shop-product', require('./components/ShopProduct.vue').default);
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue').default);
 
+const store = require('./store').default;
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -31,4 +33,5 @@ Vue.component('shopping-cart', require('./components/ShoppingCart.vue').default)
 
 const app = new Vue({
     el: '#app',
+    store
 });
