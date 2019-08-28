@@ -28,7 +28,10 @@ const store = new Vuex.Store({
       state.cart[payload.idx].quantity += payload.quantity; 
     },
     ADD_ITEM_TO_CART (state, payload) {
-      state.cart.push(payload)
+      state.cart.push(payload);
+    },
+    REMOVE_ITEM_FROM_CART (state, payload) {
+      state.cart.splice(payload, 1);
     }
   },
   actions: {
@@ -60,6 +63,10 @@ const store = new Vuex.Store({
         commit('ADD_ITEM_TO_CART', newItem);
         dispatch('updateCart');
       }
+    },
+    removeCartItem({ commit, dispatch }, item) {
+      commit('REMOVE_ITEM_FROM_CART', item);
+      dispatch('updateCart');
     }
   }
 })

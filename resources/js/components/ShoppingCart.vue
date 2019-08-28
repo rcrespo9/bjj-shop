@@ -5,9 +5,15 @@
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="media" v-for="item in cart" :key="item">
+        <img class="align-self-start img-fluid mr-3" :src="item.image_url" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">{{ item.name }}</h5>
+          <p class="text-muted">{{ item.price }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+          <button class="btn btn-link text-danger" @click="removeItem(item)">Remove</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,9 +37,20 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getCartItems'
-    ])
+      'getCartItems',
+      'removeCartItem'
+    ]),
+    removeItem(item) {
+      const itemIdx = this.cart.indexOf(item);
+      this.removeCartItem(itemIdx);
+    }
   }
 }
 </script>
+
+<style scoped>
+  .media img {
+    width: 25%;
+  }
+</style>
 
