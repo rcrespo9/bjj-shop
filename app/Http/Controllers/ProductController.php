@@ -14,8 +14,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ProductResource::collection(Product::all());
+        $name = $request->query('name');
+        $category = $request->query('category');
+        $price_order = $request->query('price_order');
+
+        return ProductResource::collection(
+            Product::where('name', 'LIKE', "%{$name}%")
+            ->when($category, function($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($price_order, function($query, $price_order) {
+                return $query->orderBy('price', $price_order);
+            })
+            ->get()
+        );
     }
 }
