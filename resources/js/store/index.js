@@ -10,13 +10,13 @@ const store = new Vuex.Store({
   },
   getters: {
     itemsCount: state => {
-      const totalProductsReducer = (acc, curr) => acc.quantity + curr.quantity;
-      let totalProducts = state.cart.reduce(totalProductsReducer);
-      return totalProducts;
+      const totalItemsReducer = (acc, curr) => acc + curr.quantity;
+      const itemsSum = state.cart.reduce(totalItemsReducer, 0);
+      return itemsSum;
     },
     totalPrice: state => {
-      const totalPriceReducer = (acc, curr) => (parseFloat(acc.price) * acc.quantity) + (parseFloat(curr.price) * curr.quantity);
-      let totalPrice = state.cart.reduce(totalPriceReducer);
+      const totalPriceReducer = (acc, curr) => acc + (parseFloat(curr.price) * curr.quantity);
+      let totalPrice = state.cart.reduce(totalPriceReducer, 0);
       return totalPrice;
     }
   },

@@ -50959,19 +50959,19 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   },
   getters: {
     itemsCount: function itemsCount(state) {
-      var totalProductsReducer = function totalProductsReducer(acc, curr) {
-        return acc.quantity + curr.quantity;
+      var totalItemsReducer = function totalItemsReducer(acc, curr) {
+        return acc + curr.quantity;
       };
 
-      var totalProducts = state.cart.reduce(totalProductsReducer);
-      return totalProducts;
+      var itemsSum = state.cart.reduce(totalItemsReducer, 0);
+      return itemsSum;
     },
     totalPrice: function totalPrice(state) {
       var totalPriceReducer = function totalPriceReducer(acc, curr) {
-        return parseFloat(acc.price) * acc.quantity + parseFloat(curr.price) * curr.quantity;
+        return acc + parseFloat(curr.price) * curr.quantity;
       };
 
-      var totalPrice = state.cart.reduce(totalPriceReducer);
+      var totalPrice = state.cart.reduce(totalPriceReducer, 0);
       return totalPrice;
     }
   },
