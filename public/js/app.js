@@ -6485,7 +6485,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.media img[data-v-c86466da] {\n  width: 25%;\n}\n", ""]);
+exports.push([module.i, "\n.media img[data-v-c86466da] {\n  width: 50%;\n}\n", ""]);
 
 // exports
 
@@ -38108,22 +38108,28 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "media-body" }, [
-                      _c("h5", { staticClass: "mt-0" }, [
-                        _vm._v(_vm._s(item.name))
+                      _c("p", { staticClass: "mb-1" }, [
+                        _c("strong", { staticClass: "mt-0 mb-1" }, [
+                          _vm._v(_vm._s(item.name))
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("p", { staticClass: "text-muted" }, [
+                      _c("p", { staticClass: "mt-0 mb-1 text-muted" }, [
                         _vm._v(_vm._s(item.price))
                       ]),
                       _vm._v(" "),
-                      _c("p", [_vm._v("Quantity: " + _vm._s(item.quantity))]),
+                      _c("p", { staticClass: "mb-1" }, [
+                        _vm._v("Quantity: " + _vm._s(item.quantity))
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "button",
+                        "a",
                         {
-                          staticClass: "btn btn-link text-danger",
+                          staticClass: "text-danger",
+                          attrs: { href: "#", role: "button" },
                           on: {
                             click: function($event) {
+                              $event.preventDefault()
                               return _vm.removeItem(item)
                             }
                           }
