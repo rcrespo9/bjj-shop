@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Welcome</h1>
+@component('components.shop')
+  @slot('title')
+    Shop
+  @endslot
+
+  <shop></shop>
+@endcomponent
 @endsection
