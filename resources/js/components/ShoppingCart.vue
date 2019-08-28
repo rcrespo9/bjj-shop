@@ -6,7 +6,7 @@
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <div v-if="cart.length">
-        <div class="media" v-for="item in cart" :key="item.id">
+        <div class="media mb-3" v-for="item in cart" :key="item.id">
           <img class="align-self-start img-fluid mr-3" :src="item.image_url" alt="">
           <div class="media-body">
             <p class="mb-1"><strong class="mt-0 mb-1">{{ item.name }}</strong></p>

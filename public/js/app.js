@@ -38101,43 +38101,47 @@ var render = function() {
               "div",
               [
                 _vm._l(_vm.cart, function(item) {
-                  return _c("div", { key: item.id, staticClass: "media" }, [
-                    _c("img", {
-                      staticClass: "align-self-start img-fluid mr-3",
-                      attrs: { src: item.image_url, alt: "" }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "media-body" }, [
-                      _c("p", { staticClass: "mb-1" }, [
-                        _c("strong", { staticClass: "mt-0 mb-1" }, [
-                          _vm._v(_vm._s(item.name))
-                        ])
-                      ]),
+                  return _c(
+                    "div",
+                    { key: item.id, staticClass: "media mb-3" },
+                    [
+                      _c("img", {
+                        staticClass: "align-self-start img-fluid mr-3",
+                        attrs: { src: item.image_url, alt: "" }
+                      }),
                       _vm._v(" "),
-                      _c("p", { staticClass: "mt-0 mb-1 text-muted" }, [
-                        _vm._v(_vm._s(item.price))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mb-1" }, [
-                        _vm._v("Quantity: " + _vm._s(item.quantity))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "text-danger",
-                          attrs: { href: "#", role: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.removeItem(item)
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("p", { staticClass: "mb-1" }, [
+                          _c("strong", { staticClass: "mt-0 mb-1" }, [
+                            _vm._v(_vm._s(item.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "mt-0 mb-1 text-muted" }, [
+                          _vm._v(_vm._s(item.price))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "mb-1" }, [
+                          _vm._v("Quantity: " + _vm._s(item.quantity))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-danger",
+                            attrs: { href: "#", role: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.removeItem(item)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Remove")]
-                      )
-                    ])
-                  ])
+                          },
+                          [_vm._v("Remove")]
+                        )
+                      ])
+                    ]
+                  )
                 }),
                 _vm._v(" "),
                 _c("hr"),
