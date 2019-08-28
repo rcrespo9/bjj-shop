@@ -33,5 +33,25 @@
                 </form>
             </div>
         </div>
+
+        @if (count($category->products) > 0)
+         <section class="mt-4">
+           <div class="row">
+               @foreach ($category->products as $product)
+                   <div class="col-sm-3 pb-3">
+                       <div class="card">
+                         <img class="img-fluid" src="{{ $product->image_url }}" alt="">
+                           <div class="card-body">
+                               <h3 class="h5">{{ $product->name }}</h3>
+                               <p class="card-subtitle text-muted">${{ $product->price }}</p>
+                               <p>Quantity: {{ $product->quantity_in_stock }}</p>
+                               <a class="card-link" href="{{ route('products.show', $product->id) }}">View Product</a>
+                           </div>
+                       </div>
+                   </div>
+               @endforeach
+           </div>
+         </section> 
+        @endif  
     @endcomponent
 @endsection
