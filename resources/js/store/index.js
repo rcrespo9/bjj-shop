@@ -17,7 +17,7 @@ const store = new Vuex.Store({
     totalPrice: state => {
       const totalPriceReducer = (acc, curr) => acc + (parseFloat(curr.price) * curr.quantity);
       let totalPrice = state.cart.reduce(totalPriceReducer, 0);
-      return totalPrice;
+      return totalPrice.toFixed(2);
     }
   },
   mutations: {
@@ -63,6 +63,10 @@ const store = new Vuex.Store({
         commit('ADD_ITEM_TO_CART', newItem);
         dispatch('updateCart');
       }
+
+      const $cartDrop = $('.cart-dropdown');
+      $cartDrop.dropdown('show');
+      setTimeout(() => $cartDrop.dropdown('hide'), 2000);
     },
     removeCartItem({ commit, dispatch }, item) {
       commit('REMOVE_ITEM_FROM_CART', item);

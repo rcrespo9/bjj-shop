@@ -2003,6 +2003,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShoppingCart',
@@ -38059,7 +38067,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "dropdown" }, [
+  return _c("div", { staticClass: "dropdown cart-dropdown" }, [
     _c(
       "a",
       {
@@ -38087,38 +38095,66 @@ var render = function() {
         staticClass: "dropdown-menu",
         attrs: { "aria-labelledby": "dropdownMenuLink" }
       },
-      _vm._l(_vm.cart, function(item) {
-        return _c("div", { key: item, staticClass: "media" }, [
-          _c("img", {
-            staticClass: "align-self-start img-fluid mr-3",
-            attrs: { src: item.image_url, alt: "" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "media-body" }, [
-            _c("h5", { staticClass: "mt-0" }, [_vm._v(_vm._s(item.name))]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-muted" }, [
-              _vm._v(_vm._s(item.price))
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v("Quantity: " + _vm._s(item.quantity))]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-link text-danger",
-                on: {
-                  click: function($event) {
-                    return _vm.removeItem(item)
-                  }
-                }
-              },
-              [_vm._v("Remove")]
+      [
+        _vm.cart.length
+          ? _c(
+              "div",
+              [
+                _vm._l(_vm.cart, function(item) {
+                  return _c("div", { key: item.id, staticClass: "media" }, [
+                    _c("img", {
+                      staticClass: "align-self-start img-fluid mr-3",
+                      attrs: { src: item.image_url, alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("h5", { staticClass: "mt-0" }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(item.price))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Quantity: " + _vm._s(item.quantity))]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-link text-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.removeItem(item)
+                            }
+                          }
+                        },
+                        [_vm._v("Remove")]
+                      )
+                    ])
+                  ])
+                }),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "px-3 pb-2" }, [
+                  _c("p", { staticClass: "mt-0 mb-1" }, [
+                    _vm._v("Total: $" + _vm._s(_vm.totalPrice))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary btn-block",
+                      attrs: { href: "#" }
+                    },
+                    [_vm._v("Checkout")]
+                  )
+                ])
+              ],
+              2
             )
-          ])
-        ])
-      }),
-      0
+          : _c("p", { staticClass: "px-3 m-0" }, [_vm._v("No items in cart.")])
+      ]
     )
   ])
 }
@@ -51658,7 +51694,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       };
 
       var totalPrice = state.cart.reduce(totalPriceReducer, 0);
-      return totalPrice;
+      return totalPrice.toFixed(2);
     }
   },
   mutations: {
@@ -51709,6 +51745,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         commit('ADD_ITEM_TO_CART', newItem);
         dispatch('updateCart');
       }
+
+      var $cartDrop = $('.cart-dropdown');
+      $cartDrop.dropdown('show');
+      setTimeout(function () {
+        return $cartDrop.dropdown('hide');
+      }, 2000);
     },
     removeCartItem: function removeCartItem(_ref4, item) {
       var commit = _ref4.commit,
