@@ -27,6 +27,7 @@
     data() {
       return {
         products: [],
+        cart: [],
         filters: {}
       }
     },
@@ -44,7 +45,20 @@
       },
       addToCart(productId, quantity) {
         const selectedProduct = _.find(this.products, { id: productId });
-        console.log(quantity)
+        const formattedQuantity = parseInt(quantity, 10);
+        const newProduct = {
+          ...selectedProduct,
+          quantity: formattedQuantity
+        }
+        const productInCart = _.find(this.cart, { id: newProduct.id });
+
+        if (productInCart) {
+          productInCart.quantity += newProduct.quantity;
+        } else {
+          this.cart.push(newProduct);
+        }
+
+        localStorage.setItem('fantastic_toys_cart', JSON.stringify(this.cart));
       },
       deleteFromCart() {
 

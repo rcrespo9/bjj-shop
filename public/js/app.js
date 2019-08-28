@@ -1861,6 +1861,10 @@ module.exports = function isBuffer (obj) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShopProduct_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShopProduct.vue */ "./resources/js/components/ShopProduct.vue");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { if (i % 2) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } else { Object.defineProperties(target, Object.getOwnPropertyDescriptors(arguments[i])); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1888,6 +1892,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       products: [],
+      cart: [],
       filters: {}
     };
   },
@@ -1909,7 +1914,23 @@ __webpack_require__.r(__webpack_exports__);
         id: productId
       });
 
-      console.log(quantity);
+      var formattedQuantity = parseInt(quantity, 10);
+
+      var newProduct = _objectSpread({}, selectedProduct, {
+        quantity: formattedQuantity
+      });
+
+      var productInCart = _.find(this.cart, {
+        id: newProduct.id
+      });
+
+      if (productInCart) {
+        productInCart.quantity += newProduct.quantity;
+      } else {
+        this.cart.push(newProduct);
+      }
+
+      localStorage.setItem('fantastic_toys_cart', JSON.stringify(this.cart));
     },
     deleteFromCart: function deleteFromCart() {}
   }
@@ -37297,7 +37318,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "number", name: "quantity", id: "quantity" },
+        attrs: { type: "number", name: "quantity", id: "quantity", min: "1" },
         domProps: { value: _vm.quantity },
         on: {
           input: function($event) {
