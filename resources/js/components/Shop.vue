@@ -27,7 +27,6 @@
     data() {
       return {
         products: [],
-        cart: [],
         filters: {}
       }
     },
@@ -50,15 +49,16 @@
           ...selectedProduct,
           quantity: formattedQuantity
         }
-        const productInCart = _.find(this.cart, { id: newProduct.id });
+        const cart = JSON.parse( localStorage.getItem('fantastic_toys_cart') );
+        const productInCart = _.find(cart, { id: newProduct.id });
 
         if (productInCart) {
           productInCart.quantity += newProduct.quantity;
         } else {
-          this.cart.push(newProduct);
+          cart.push(newProduct);
         }
 
-        localStorage.setItem('fantastic_toys_cart', JSON.stringify(this.cart));
+        localStorage.setItem('fantastic_toys_cart', JSON.stringify(cart));
       },
       deleteFromCart() {
 
