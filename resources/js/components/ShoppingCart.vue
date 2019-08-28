@@ -6,19 +6,16 @@
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <div v-if="cart.length">
-        <div class="media mb-3" v-for="item in cart" :key="item.id">
-          <img class="align-self-start img-fluid mr-3" :src="item.image_url" alt="">
-          <div class="media-body">
-            <p class="mb-1"><strong class="mt-0 mb-1">{{ item.name }}</strong></p>
-            <p class="mt-0 mb-1 text-muted">{{ item.price }}</p>
-            <p class="mb-1">Quantity: {{ item.quantity }}</p>
-            <a href="#" role="button" class="text-danger" @click.prevent="removeItem(item)">Remove</a>
-          </div>
-        </div>
+        <ShoppingCartItem
+          v-for="item in cart" 
+          :key="item.id" 
+          :item="item"
+          @remove-product="removeItem"
+        />
         <hr>
         <div class="px-3 pb-2">
           <p class="mt-0 mb-1">Total: ${{ totalPrice }}</p>
-          <a class="btn btn-primary btn-block" href="#">Checkout</a>
+          <a class="btn btn-primary btn-block" href="/checkout">Checkout</a>
         </div>
       </div>
       <p class="px-3 m-0" v-else>No items in cart.</p>
@@ -27,10 +24,14 @@
 </template>
 
 <script>
+import ShoppingCartItem from './ShoppingCartItem.vue'
 import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ShoppingCart',
+  components: {
+    ShoppingCartItem
+  },
   computed: {
     ...mapGetters([
       'itemsCount',
@@ -55,10 +56,4 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .media img {
-    width: 50%;
-  }
-</style>
 
