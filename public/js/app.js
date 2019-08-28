@@ -1904,13 +1904,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.products = response.data.data;
       });
     },
-    addToCart: function addToCart(productId) {
+    addToCart: function addToCart(productId, quantity) {
       var selectedProduct = _.find(this.products, {
         id: productId
       });
 
-      console.log(selectedProduct);
-      console.log('whoa!');
+      console.log(quantity);
     },
     deleteFromCart: function deleteFromCart() {}
   }
@@ -1943,9 +1942,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShopProduct',
   props: ['item'],
+  data: function data() {
+    return {
+      quantity: ''
+    };
+  },
   methods: {
     onAddToCart: function onAddToCart(itemId) {
-      this.$emit('add-product', itemId);
+      this.$emit('add-product', itemId, this.quantity);
     }
   }
 });
@@ -37284,8 +37288,25 @@ var render = function() {
       _c("label", { attrs: { for: "quantity" } }, [_vm._v("Quantity")]),
       _vm._v(" "),
       _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.quantity,
+            expression: "quantity"
+          }
+        ],
         staticClass: "form-control",
-        attrs: { type: "number", name: "quantity", id: "quantity" }
+        attrs: { type: "number", name: "quantity", id: "quantity" },
+        domProps: { value: _vm.quantity },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.quantity = $event.target.value
+          }
+        }
       }),
       _vm._v(" "),
       _c(

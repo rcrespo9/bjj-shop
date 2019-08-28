@@ -42,10 +42,9 @@
             this.products = response.data.data;
           })
       },
-      addToCart(productId) {
+      addToCart(productId, quantity) {
         const selectedProduct = _.find(this.products, { id: productId });
-        console.log(selectedProduct);
-        console.log('whoa!')
+        console.log(quantity)
       },
       deleteFromCart() {
 
