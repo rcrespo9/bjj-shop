@@ -15,11 +15,11 @@
             </div>
         @endif
         
-        <div class="media">
-          <img class="mr-3" src="{{ $product->image_url }}" alt="">
+        <div class="media mb-4">
+          <img class="align-self-start mr-3 img-fluid dashboard-product-show-img" src="{{ $product->image_url }}" alt="">
           <div class="media-body">
             <h3 class="h4">{{ $product->name }}</h3>
-            <p class="text-muted">{{ $product->price }}</p>
+            <p class="text-muted">${{ $product->price }}</p>
             <p>Quantity: {{ $product->quantity_in_stock }}</p>
             <p>Category: <a href="{{ route('categories.show', $product->category->id) }}">{{ $product->category->name }}</a></p>
           </div>

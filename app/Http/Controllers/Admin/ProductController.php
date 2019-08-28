@@ -21,9 +21,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $categories = Category::all();
 
-        return view('dashboard.products.index', compact('products'));
+        return view('dashboard.products.index', compact('categories'));
     }
 
     /**

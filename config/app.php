@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Kimura BJJ Gear'),
+    'name' => env('APP_NAME', 'Fantastic Toys'),
 
     /*
     |--------------------------------------------------------------------------

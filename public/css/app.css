@@ -11145,3 +11145,7 @@ a.text-dark:focus {
   }
 }
 
+.dashboard-product-show-img {
+  max-width: 25%;
+}
+
