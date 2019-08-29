@@ -6,6 +6,10 @@
             Product Details
         @endslot
 
+        @slot('action')
+            <a class="btn btn-primary" href="{{ route('products.create') }}">Add New</a>
+        @endslot
+
         @if (session('product_status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{ session('product_status') }}

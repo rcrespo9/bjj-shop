@@ -3,7 +3,7 @@
 @section('content')
     @component('components.dashboard')
         @slot('title')
-            Products
+            Products <span class="badge badge-secondary">{{ count($products) }}</span>
         @endslot
         
         @slot('action')
