@@ -23,7 +23,7 @@ class ProductController extends Controller
         return ProductResource::collection(
             Product::where('name', 'LIKE', "%{$name}%")
             ->when($category, function($query, $category) {
-                return $query->where('category_id', $category);
+                return $query->whereIn('category_id', $category);
             })
             ->when($price_order, function($query, $price_order) {
                 return $query->orderBy('price', $price_order);
