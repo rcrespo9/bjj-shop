@@ -22,5 +22,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'dashboard', 'middleware' => '
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController');
-    Route::resource('orders', 'OrdersController')->except(['create']);
+    Route::resource('orders', 'OrdersController')->except(['create', 'store']);
 });

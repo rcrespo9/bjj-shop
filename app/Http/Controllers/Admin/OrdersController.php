@@ -60,6 +60,6 @@ class OrdersController extends Controller
     {
         $order->delete();
 
-        return redirect()->route('orders.index')->with('order_status', $order->id . ' has been deleted.');
+        return redirect()->route('orders.index')->with('order_status', 'Order No. ' . $order->id . ' has been deleted.');
     }
 }

@@ -48,7 +48,7 @@
                 <p class="mb-0">Total Products: {{ $total_products }}</p>
                 <p>Total Order Price: ${{ number_format((float)$total_price, 2, '.', '') }}</p>
                 
-                @if (!$order->is_shipped) {
+                @if (!$order->is_shipped)
                   <form class="mb-4" action="{{ route('orders.update', $order->id) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
@@ -60,12 +60,11 @@
                     <input type="hidden" name="ship_date" value="{{ date("Y-m-d H:i:s") }}">
                     <input type="submit" class="btn btn-success mt-2" value="Ship Order">
                   </form>
-                }
                 @endif
 
                 <a class="btn btn-primary" href="{{ route('orders.index') }}">Back to Orders</a>
                 
-                @if (!$order->is_shipped) {
+                @if (!$order->is_shipped)
                   <form action="{{ route('orders.destroy', $order->id) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
