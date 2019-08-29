@@ -11,5 +11,6 @@ class CheckoutController extends Controller
     }
 
     public function store(Request $request) {
+        return redirect()->route('/thanks');
     }
 }
