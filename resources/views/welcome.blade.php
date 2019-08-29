@@ -6,6 +6,6 @@
     Shop
   @endslot
 
-  <shop></shop>
+  <shop :categories="{{ $categories }}"></shop>
 @endcomponent
 @endsection

@@ -1965,6 +1965,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1972,14 +1982,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ShopProduct: _ShopProduct_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ['categories'],
   data: function data() {
     return {
       products: [],
-      filters: {}
+      filters: {
+        category: []
+      }
     };
   },
   created: function created() {
+    this.debouncedGetProducts = _.debounce(this.getProducts, 500);
     this.getProducts();
+  },
+  watch: {
+    filters: {
+      handler: function handler() {
+        this.debouncedGetProducts();
+      },
+      deep: true
+    }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart']),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['addCartItem']), {
@@ -38127,7 +38149,93 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-2" }, [
-      _vm._v("\n    Filters Go here\n  ")
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Search for toy")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.filters.name,
+              expression: "filters.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.filters.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.filters, "name", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "fieldset",
+        [
+          _c("legend", { staticClass: "h5" }, [_vm._v("Categories")]),
+          _vm._v(" "),
+          _vm._l(_vm.categories, function(category) {
+            return _c("div", { key: category.id }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filters.category,
+                    expression: "filters.category"
+                  }
+                ],
+                attrs: {
+                  type: "checkbox",
+                  name: category.name,
+                  id: category.name
+                },
+                domProps: {
+                  value: category.id,
+                  checked: Array.isArray(_vm.filters.category)
+                    ? _vm._i(_vm.filters.category, category.id) > -1
+                    : _vm.filters.category
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.filters.category,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = category.id,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(_vm.filters, "category", $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.filters,
+                            "category",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.filters, "category", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: category.name } }, [
+                _vm._v(_vm._s(category.name))
+              ])
+            ])
+          })
+        ],
+        2
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-10" }, [
