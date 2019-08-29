@@ -6,6 +6,17 @@
         <input class="form-control" type="text" v-model="filters.name">
       </div>
       <fieldset>
+        <legend class="h5">Sort By Price</legend>
+        <div>
+          <input type="radio" name="price-high" id="price-high" value="desc" v-model="filters.price_order">
+          <label for="price-high">High to Low</label>
+        </div>
+        <div>
+          <input type="radio" name="price-low" id="price-low" value="asc" v-model="filters.price_order">
+          <label for="price-low">Low to High</label>
+        </div>
+      </fieldset>
+      <fieldset>
         <legend class="h5">Categories</legend>
         <div v-for="category in categories" :key="category.id">
           <input type="checkbox" :name="category.name" :id="category.name" :value="category.id" v-model="filters.category">

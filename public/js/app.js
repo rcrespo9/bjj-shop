@@ -1975,6 +1975,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38173,6 +38184,64 @@ var render = function() {
             }
           }
         })
+      ]),
+      _vm._v(" "),
+      _c("fieldset", [
+        _c("legend", { staticClass: "h5" }, [_vm._v("Sort By Price")]),
+        _vm._v(" "),
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.price_order,
+                expression: "filters.price_order"
+              }
+            ],
+            attrs: {
+              type: "radio",
+              name: "price-high",
+              id: "price-high",
+              value: "desc"
+            },
+            domProps: { checked: _vm._q(_vm.filters.price_order, "desc") },
+            on: {
+              change: function($event) {
+                return _vm.$set(_vm.filters, "price_order", "desc")
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "price-high" } }, [_vm._v("High to Low")])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.price_order,
+                expression: "filters.price_order"
+              }
+            ],
+            attrs: {
+              type: "radio",
+              name: "price-low",
+              id: "price-low",
+              value: "asc"
+            },
+            domProps: { checked: _vm._q(_vm.filters.price_order, "asc") },
+            on: {
+              change: function($event) {
+                return _vm.$set(_vm.filters, "price_order", "asc")
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "price-low" } }, [_vm._v("Low to High")])
+        ])
       ]),
       _vm._v(" "),
       _c(
