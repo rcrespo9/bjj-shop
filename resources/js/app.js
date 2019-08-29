@@ -27,7 +27,7 @@ Vue.component('checkout', require('./components/Checkout.vue').default);
 
 import CheckoutForm from './CheckoutForm.js';
 
-// CheckoutForm.init();
+CheckoutForm.init();
 
 const store = require('./store').default;
 

@@ -51590,7 +51590,8 @@ Vue.component('shop-product', __webpack_require__(/*! ./components/ShopProduct.v
 Vue.component('shopping-cart', __webpack_require__(/*! ./components/ShoppingCart.vue */ "./resources/js/components/ShoppingCart.vue")["default"]);
 Vue.component('shopping-cart-item', __webpack_require__(/*! ./components/ShoppingCartItem.vue */ "./resources/js/components/ShoppingCartItem.vue")["default"]);
 Vue.component('checkout', __webpack_require__(/*! ./components/Checkout.vue */ "./resources/js/components/Checkout.vue")["default"]);
- // CheckoutForm.init();
+
+_CheckoutForm_js__WEBPACK_IMPORTED_MODULE_0__["default"].init();
 
 var store = __webpack_require__(/*! ./store */ "./resources/js/store/index.js")["default"];
 /**
