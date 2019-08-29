@@ -42,7 +42,9 @@ export default {
     ])
   },
   created() {
-    if (this.itemsCount) {
+    const isCartEmpty = !!!JSON.parse(localStorage['fantastic_toys_cart']).length;
+
+    if (!isCartEmpty) {
       this.getCartItems();
     }
   },

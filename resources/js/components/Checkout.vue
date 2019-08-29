@@ -36,15 +36,38 @@ export default {
   mounted() {
     const $checkoutForm = $('.checkout-form');
     const $msg = $('.checkout-no-items-msg');
-
-    if (!this.cart.length) {
+    const hideForm = () => {
       $checkoutForm.remove();
       $msg.removeClass('d-none');
     }
+
+    if (!this.cart.length) {
+      hideForm();
+    }
+
+    this.$store.watch(
+      state => state.cart,
+      () => {
+        if (!this.cart.length) {
+          hideForm();
+        }
+      }
+    );
   },
   methods: {
+    ...mapActions([
+      'removeCartItem'
+    ]),
     removeItem(item) {
       const itemIdx = this.cart.indexOf(item);
+      const $checkoutForm = $('.checkout-form');
+      const $msg = $('.checkout-no-items-msg');
+
+      if (!this.cart.length) {
+        $checkoutForm.remove();
+        $msg.removeClass('d-none');
+      }
+
       this.removeCartItem(itemIdx);
     }
   }

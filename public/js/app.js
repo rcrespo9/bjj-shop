@@ -1892,20 +1892,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['itemsCount', 'totalPrice']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart'])),
   mounted: function mounted() {
+    var _this = this;
+
     var $checkoutForm = $('.checkout-form');
     var $msg = $('.checkout-no-items-msg');
 
-    if (!this.cart.length) {
+    var hideForm = function hideForm() {
       $checkoutForm.remove();
       $msg.removeClass('d-none');
+    };
+
+    if (!this.cart.length) {
+      hideForm();
     }
+
+    this.$store.watch(function (state) {
+      return state.cart;
+    }, function () {
+      if (!_this.cart.length) {
+        hideForm();
+      }
+    });
   },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['removeCartItem']), {
     removeItem: function removeItem(item) {
       var itemIdx = this.cart.indexOf(item);
+      var $checkoutForm = $('.checkout-form');
+      var $msg = $('.checkout-no-items-msg');
+
+      if (!this.cart.length) {
+        $checkoutForm.remove();
+        $msg.removeClass('d-none');
+      }
+
       this.removeCartItem(itemIdx);
     }
-  }
+  })
 });
 
 /***/ }),
@@ -2077,7 +2099,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['itemsCount', 'totalPrice']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart'])),
   created: function created() {
-    if (this.itemsCount) {
+    var isCartEmpty = !!!JSON.parse(localStorage['fantastic_toys_cart']).length;
+
+    if (!isCartEmpty) {
       this.getCartItems();
     }
   },
@@ -2100,6 +2124,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -2112,6 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShoppingCartItem',
   props: ['item'],
