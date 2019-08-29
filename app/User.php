@@ -40,10 +40,10 @@ class User extends Authenticatable
     ];
 
     public function supervisor() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'reports_to', 'id');
     }
 
     public function employees() {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\User', 'reports_to', 'id');
     }
 }

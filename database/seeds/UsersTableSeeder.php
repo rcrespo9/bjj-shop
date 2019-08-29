@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'Rudy Crespo',
-            'email' => 'admin@kimurabjj.com',
+            'email' => 'admin@fantastictoys.com',
             'password' => bcrypt('password'),
             'job_title' => 'CTO and Founder'
         ]);
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
 
         $manager = User::create([
             'name' => 'Juan Estrada',
-            'email' => 'manager@kimurabjj.com',
+            'email' => 'manager@fantastictoys.com',
             'password' => bcrypt('password'),
             'job_title' => 'Store Manager'
         ]);
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
 
         $hr = User::create([
             'name' => 'Dolly Johnson',
-            'email' => 'hr@kimurabjj.com',
+            'email' => 'hr@fantastictoys.com',
             'password' => bcrypt('password'),
             'job_title' => 'Human Resources Generalist'
         ]);
@@ -39,10 +39,13 @@ class UsersTableSeeder extends Seeder
 
         $customerService = User::create([
             'name' => 'Bob Smith',
-            'email' => 'customerservice@kimurabjj.com',
+            'email' => 'customerservice@fantastictoys.com',
             'password' => bcrypt('password'),
             'job_title' => 'Customer Services Associate'
         ]);
         $customerService->assignRole('Customer Services');
+
+        $employees_arr = array($manager, $hr, $customerService);
+        $admin->employees()->saveMany($employees_arr);
     }
 }

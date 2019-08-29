@@ -21,7 +21,7 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->job_title }}</td>
               <td>{{ $user->email }}</td>
-              <td>{{ $user->supervisor ? $user->supervisor : 'Nobody' }}</td>
+              <td>{{ $user->supervisor ? $user->supervisor->name : 'Nobody' }}</td>
             </tr>
             @endforeach
           </tbody>
