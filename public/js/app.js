@@ -1984,8 +1984,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38160,6 +38158,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-2" }, [
+      _c("h2", { staticClass: "h3" }, [_vm._v("Filters")]),
+      _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "name" } }, [_vm._v("Search for toy")]),
         _vm._v(" "),
@@ -38186,38 +38186,14 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("fieldset", [
-        _c("legend", { staticClass: "h5" }, [_vm._v("Sort By Price")]),
-        _vm._v(" "),
-        _c("div", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filters.price_order,
-                expression: "filters.price_order"
-              }
-            ],
-            attrs: {
-              type: "radio",
-              name: "price-high",
-              id: "price-high",
-              value: "desc"
-            },
-            domProps: { checked: _vm._q(_vm.filters.price_order, "desc") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.filters, "price_order", "desc")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "price-high" } }, [_vm._v("High to Low")])
+      _c("div", { staticClass: "mb-3" }, [
+        _c("label", { attrs: { for: "sort-price" } }, [
+          _vm._v("Sort By Price")
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("input", {
+        _c(
+          "select",
+          {
             directives: [
               {
                 name: "model",
@@ -38226,22 +38202,34 @@ var render = function() {
                 expression: "filters.price_order"
               }
             ],
-            attrs: {
-              type: "radio",
-              name: "price-low",
-              id: "price-low",
-              value: "asc"
-            },
-            domProps: { checked: _vm._q(_vm.filters.price_order, "asc") },
+            staticClass: "form-control",
+            attrs: { name: "sort-price", id: "sort-price" },
             on: {
               change: function($event) {
-                return _vm.$set(_vm.filters, "price_order", "asc")
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.filters,
+                  "price_order",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
               }
             }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "price-low" } }, [_vm._v("Low to High")])
-        ])
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("Select order")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "desc" } }, [_vm._v("High to Low")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "asc" } }, [_vm._v("Low to High")])
+          ]
+        )
       ]),
       _vm._v(" "),
       _c(

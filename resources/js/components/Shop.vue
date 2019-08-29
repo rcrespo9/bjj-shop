@@ -1,21 +1,19 @@
 <template>
   <div class="row">
     <div class="col-md-2">
+      <h2 class="h3">Filters</h2>
       <div class="form-group">
         <label for="name">Search for toy</label>
         <input class="form-control" type="text" v-model="filters.name">
       </div>
-      <fieldset>
-        <legend class="h5">Sort By Price</legend>
-        <div>
-          <input type="radio" name="price-high" id="price-high" value="desc" v-model="filters.price_order">
-          <label for="price-high">High to Low</label>
-        </div>
-        <div>
-          <input type="radio" name="price-low" id="price-low" value="asc" v-model="filters.price_order">
-          <label for="price-low">Low to High</label>
-        </div>
-      </fieldset>
+      <div class="mb-3">
+        <label for="sort-price">Sort By Price</label>
+        <select class="form-control" name="sort-price" id="sort-price" v-model="filters.price_order">
+          <option value="">Select order</option>
+          <option value="desc">High to Low</option>
+          <option value="asc">Low to High</option>
+        </select>
+      </div>
       <fieldset>
         <legend class="h5">Categories</legend>
         <div v-for="category in categories" :key="category.id">
