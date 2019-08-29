@@ -23,6 +23,7 @@ Vue.component('shop', require('./components/Shop.vue').default);
 Vue.component('shop-product', require('./components/ShopProduct.vue').default);
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue').default);
 Vue.component('shopping-cart-item', require('./components/ShoppingCartItem.vue').default);
+Vue.component('checkout', require('./components/Checkout.vue').default);
 
 const store = require('./store').default;
 

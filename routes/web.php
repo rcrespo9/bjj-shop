@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'ShopController@index');
+Route::get('/checkout', 'CheckoutController@index');
+Route::resource('orders', 'CheckoutController')->only(['store']);
 
 Auth::routes(['register' => false]);
 
