@@ -2077,7 +2077,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['itemsCount', 'totalPrice']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart'])),
   created: function created() {
-    if (localStorage.getItem('fantastic_toys_cart') !== null) {
+    if (this.itemsCount) {
       this.getCartItems();
     }
   },
