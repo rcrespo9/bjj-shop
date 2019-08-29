@@ -20,12 +20,13 @@ class CheckoutController extends Controller
         $order_details_arr = array();
         
         foreach ($request->product as $product) {
-            $productItem = Product::find($product);
+            $product_item = Product::find($product);
             $order_detail = OrderDetail::create([
                 'quantity_ordered' => $request->input('product_' . $product . '.quantity'),
-                'price_each' => $productItem->price
+                'price_each' => $product_item->price
             ]);
-            $productItem->order_details()->save($order_detail);
+            $product_item->update(['quantity_in_stock' => $product_item->quantity_in_stock - $request->input('product_' . $product . '.quantity')]);
+            $product_item->order_details()->save($order_detail);
             array_push($order_details_arr, $order_detail);
         }
 
