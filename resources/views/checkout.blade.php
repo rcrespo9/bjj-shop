@@ -8,7 +8,8 @@
 
   <div class="card w-50 mx-auto">
     <div class="card-body">
-      <form action="{{ route('orders.store') }}" method="POST">
+      <p class="checkout-no-items-msg d-none mb-0">There are no items in the cart! <a href="{{ url('/') }}">Add some.</a></p>
+      <form class="checkout-form" action="{{ route('orders.store') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
           <label for="contact_name">Name</label>

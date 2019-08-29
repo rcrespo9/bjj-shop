@@ -33,6 +33,15 @@ export default {
       'cart'
     ])
   },
+  mounted() {
+    const $checkoutForm = $('.checkout-form');
+    const $msg = $('.checkout-no-items-msg');
+
+    if (!this.cart.length) {
+      $checkoutForm.remove();
+      $msg.removeClass('d-none');
+    }
+  },
   methods: {
     removeItem(item) {
       const itemIdx = this.cart.indexOf(item);

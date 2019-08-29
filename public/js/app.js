@@ -1891,6 +1891,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ShoppingCartItem: _ShoppingCartItem__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['itemsCount', 'totalPrice']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart'])),
+  mounted: function mounted() {
+    var $checkoutForm = $('.checkout-form');
+    var $msg = $('.checkout-no-items-msg');
+
+    if (!this.cart.length) {
+      $checkoutForm.remove();
+      $msg.removeClass('d-none');
+    }
+  },
   methods: {
     removeItem: function removeItem(item) {
       var itemIdx = this.cart.indexOf(item);
@@ -2068,7 +2077,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['itemsCount', 'totalPrice']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['cart'])),
   created: function created() {
-    this.getCartItems();
+    if (localStorage.getItem('fantastic_toys_cart') !== null) {
+      this.getCartItems();
+    }
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['getCartItems', 'removeCartItem']), {
     removeItem: function removeItem(item) {
@@ -51514,13 +51525,48 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/CheckoutForm.js":
+/*!**************************************!*\
+  !*** ./resources/js/CheckoutForm.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  checkoutFormSubmit: function checkoutFormSubmit() {
+    var $checkoutForm = $('.checkout-form');
+    $checkoutForm.on('submit', function (e) {
+      if (localStorage.getItem('fantastic_toys_cart') === null) {
+        alert('Cart is empty!');
+        e.preventDefault();
+      } else {
+        localStorage.setItem('fantastic_toys_cart', '');
+      }
+    });
+  },
+  init: function init() {
+    var _this = this;
+
+    $(document).ready(function () {
+      _this.checkoutFormSubmit();
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckoutForm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckoutForm.js */ "./resources/js/CheckoutForm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -51544,6 +51590,7 @@ Vue.component('shop-product', __webpack_require__(/*! ./components/ShopProduct.v
 Vue.component('shopping-cart', __webpack_require__(/*! ./components/ShoppingCart.vue */ "./resources/js/components/ShoppingCart.vue")["default"]);
 Vue.component('shopping-cart-item', __webpack_require__(/*! ./components/ShoppingCartItem.vue */ "./resources/js/components/ShoppingCartItem.vue")["default"]);
 Vue.component('checkout', __webpack_require__(/*! ./components/Checkout.vue */ "./resources/js/components/Checkout.vue")["default"]);
+ // CheckoutForm.init();
 
 var store = __webpack_require__(/*! ./store */ "./resources/js/store/index.js")["default"];
 /**
@@ -52069,10 +52116,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       }
 
       var $cartDrop = $('.cart-dropdown');
-      $cartDrop.dropdown('show');
-      setTimeout(function () {
-        return $cartDrop.dropdown('hide');
-      }, 2000);
+      var $cartDropLink = $cartDrop.find('#dropdownMenuLink');
+      var $cartDropMenu = $cartDrop.find('.dropdown-menu');
+      $cartDrop.addClass('show');
+      $cartDropMenu.addClass('show');
+      $cartDropLink.attr('aria-expanded', true);
     },
     removeCartItem: function removeCartItem(_ref4, item) {
       var commit = _ref4.commit,

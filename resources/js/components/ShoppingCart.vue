@@ -42,7 +42,9 @@ export default {
     ])
   },
   created() {
-    this.getCartItems();
+    if (localStorage.getItem('fantastic_toys_cart') !== null) {
+      this.getCartItems();
+    }
   },
   methods: {
     ...mapActions([

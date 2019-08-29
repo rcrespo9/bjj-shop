@@ -25,6 +25,10 @@ Vue.component('shopping-cart', require('./components/ShoppingCart.vue').default)
 Vue.component('shopping-cart-item', require('./components/ShoppingCartItem.vue').default);
 Vue.component('checkout', require('./components/Checkout.vue').default);
 
+import CheckoutForm from './CheckoutForm.js';
+
+// CheckoutForm.init();
+
 const store = require('./store').default;
 
 /**

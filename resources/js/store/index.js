@@ -65,8 +65,12 @@ const store = new Vuex.Store({
       }
 
       const $cartDrop = $('.cart-dropdown');
-      $cartDrop.dropdown('show');
-      setTimeout(() => $cartDrop.dropdown('hide'), 2000);
+      const $cartDropLink= $cartDrop.find('#dropdownMenuLink');
+      const $cartDropMenu = $cartDrop.find('.dropdown-menu');
+      
+      $cartDrop.addClass('show');
+      $cartDropMenu.addClass('show');
+      $cartDropLink.attr('aria-expanded', true);
     },
     removeCartItem({ commit, dispatch }, item) {
       commit('REMOVE_ITEM_FROM_CART', item);
