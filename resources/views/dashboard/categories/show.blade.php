@@ -36,6 +36,7 @@
 
         @if (count($category->products) > 0)
          <section class="mt-4">
+           <h3 class="mb-3">{{ count($category->products) }} total products</h3>
            <div class="row">
                @foreach ($category->products as $product)
                    <div class="col-sm-3 pb-3">

@@ -25,8 +25,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="h5">{{ $category->name }}</h3>
+                            <p>{{ count($category->products) }} total products</p>
                             @if (isset($category->description))
-                                <p class="card-text">{{ str_limit($category->description, $limit = 40, $end = '...') }}</p>
+                                <p class="card-text">{{ $category->description }}</p>
                             @else
                               <p class="card-text">No description.</p>
                             @endif
